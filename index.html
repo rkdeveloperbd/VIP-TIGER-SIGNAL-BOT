@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at center, #101010 0%, #000000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      width: 100%;
+      max-width: 380px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,255,0,0.3);
+      text-align: center;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: #0f0;
+      font-size: 16px;
+      text-align: center;
+      box-shadow: 0 0 10px #0f0 inset;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00ffcc;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00cc99;
+      box-shadow: 0 0 30px #00ffcc;
+    }
+    .error {
+      color: #ff5555;
+      margin-top: 10px;
+      display: none;
+      font-size: 14px;
+    }
+    #prediction-page { display: none; }
+    .box {
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 6px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #00ffcc;
+      background: rgba(255, 255, 255, 0.05);
+      text-shadow: 0 0 5px #00ffcc;
+    }
+    .period-box { color: #ff99cc; }
+    .big { color: #00ff00; }
+    .small { color: #ff3300; }
+    .number-box { color: #ffff99; }
+    .predict-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      background: #111;
+      color: #00ffcc;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00ffcc;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .predict-btn:hover {
+      background: #222;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ffcc;
+    }
+    #live-result {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .telegram-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #0088cc;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 0 15px #0088cc;
+      transition: background 0.3s ease;
+    }
+    .telegram-button:hover {
+      background-color: #006699;
+      box-shadow: 0 0 25px #00aaff;
+    }
+    .telegram-button img {
+      width: 20px;
+      margin-right: 8px;
+    }
+    #confidence-wrapper {
+      margin: 15px 0;
+    }
+    .confidence-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #ffffffaa;
+      margin-bottom: 5px;
+    }
+    .confidence-bar {
+      position: relative;
+      height: 16px;
+      background: #222;
+      border: 1px solid #00ffcc88;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #00ffcc55 inset;
+    }
+    .confidence-fill {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      color: black;
+      font-size: 12px;
+      font-weight: bold;
+      transition: width 0.5s ease;
+    }
+    .left-fill {
+      left: 0;
+      background: linear-gradient(to right, #00ffcc, #00cc66);
+      border-radius: 20px 0 0 20px;
+      justify-content: flex-start;
+    }
+    .right-fill {
+      right: 0;
+      background: linear-gradient(to left, #ff6600, #ff3300);
+      border-radius: 0 20px 20px 0;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-box" class="container">
+    <h1>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
+    <input type="password" id="password" placeholder="Enter Access Key">
+    <button onclick="checkLogin()">Unlock</button>
+    <p class="error" id="error-message">❌ Invalid Key! DM :-@rakibhossain_bd</p>
+  </div>
+
+  <!-- PREDICTION PAGE -->
+  <div id="prediction-page" class="container">
+    <h1>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
+    <p id="result">PERIOD: <span class="box period-box">--</span></p>
+    <p id="signal">SIGNAL: <span class="box">--</span></p>
+    <div id="confidence-wrapper">
+      <div class="confidence-labels">
+        <span>SMALL</span><span>BIGG</span>
+      </div>
+      <div class="confidence-bar">
+        <div id="small-bar" class="confidence-fill left-fill">--%</div>
+        <div id="big-bar" class="confidence-fill right-fill">--%</div>
+      </div>
+    </div>
+    <p id="prediction">NUMBERS: <span class="box number-box">--/--</span></p>
+    <p id="live-result">Updating...</p>
+    <button class="predict-btn" onclick="fetchPrediction()">🔁 Refresh Prediction</button>
+    <button class="predict-btn" onclick="copyPrediction()">📋 Copy</button>
+    <a class="telegram-button" href="https://t.me/dkwine_bangladesh" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"> VIP HACK
+    </a>
+  </div>
+
+  <script>
+    const VALID_KEY = "RAKIB";
+    const EXPIRY_HOURS = 24;
+    const API_URL = 'https://api.bdg88zf.com/api/webapi/GetGameIssue';
+    const REQUEST_DATA = {
+      typeId: 1,
+      language: 0,
+      random: "e7fe6c090da2495ab8290dac551ef1ed",
+      signature: "1F390E2B2D8A55D693E57FD905AE73A7",
+      timestamp: 1723726679
+    };
+
+    let periodResults = {};
+
+    function checkLogin() {
+      const enteredKey = document.getElementById("password").value;
+      const now = Date.now();
+
+      if (enteredKey === VALID_KEY) {
+        localStorage.setItem("sdxx_key", enteredKey);
+        localStorage.setItem("sdxx_key_time", now.toString());
+        showPredictionPage();
+      } else {
+        document.getElementById("error-message").innerText = "❌ Invalid Key! DM :- @rakibhossain_bd";
+        document.getElementById("error-message").style.display = "block";
+      }
+    }
+
+    function isKeyExpired() {
+      const keyTime = localStorage.getItem("sdxx_key_time");
+      if (!keyTime) return true;
+      const now = Date.now();
+      const timeDiff = now - parseInt(keyTime);
+      const hoursPassed = timeDiff / (1000 * 60 * 60);
+      return hoursPassed > EXPIRY_HOURS;
+    }
+
+    function showPredictionPage() {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("prediction-page").style.display = "block";
+      fetchPrediction();
+      setInterval(fetchPrediction, 10000);
+    }
+
+    window.onload = function () {
+      const storedKey = localStorage.getItem("sdxx_key");
+      if (storedKey === VALID_KEY && !isKeyExpired()) {
+        showPredictionPage();
+      } else if (storedKey && isKeyExpired()) {
+        document.getElementById("error-message").innerText = "⛔ Your Key Has Expired! DM :- @rakibhossain_bd";
+        document.getElementById("error-message").style.display = "block";
+        localStorage.removeItem("sdxx_key");
+        localStorage.removeItem("sdxx_key_time");
+      }
+    };
+
+    function fetchPrediction() {
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(REQUEST_DATA)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data) {
+          let issueNumber = data.data.issueNumber || "Unknown";
+          if (!periodResults[issueNumber]) {
+            let num1 = Math.floor(Math.random() * 10);
+            let num2 = (num1 + 3) % 10;
+            let sumDigits = issueNumber.split('').reduce((acc, num) => acc + parseInt(num), 0);
+            let bigSmallPrediction = sumDigits % 2 === 0 ? "Big" : "Small";
+            let mainConfidence = Math.floor(Math.random() * 21) + 60;
+            let altConfidence = 100 - mainConfidence;
+            let bigConfidence = bigSmallPrediction === "Big" ? mainConfidence : altConfidence;
+            let smallConfidence = bigSmallPrediction === "Small" ? mainConfidence : altConfidence;
+
+            periodResults[issueNumber] = {
+              bigSmallPrediction,
+              predictedNumbers: `${num1}/${num2}`,
+              bigConfidence,
+              smallConfidence
+            };
+          }
+
+          let { bigSmallPrediction, predictedNumbers, bigConfidence, smallConfidence } = periodResults[issueNumber];
+          document.querySelector("#result .period-box").innerText = issueNumber;
+          let signalBox = document.querySelector("#signal .box");
+          signalBox.innerText = bigSmallPrediction;
+          signalBox.className = `box ${bigSmallPrediction.toLowerCase()}`;
+          document.querySelector("#prediction .number-box").innerText = predictedNumbers;
+          document.getElementById("big-bar").style.width = `${bigConfidence}%`;
+          document.getElementById("big-bar").innerText = `${bigConfidence}%`;
+          document.getElementById("small-bar").style.width = `${smallConfidence}%`;
+          document.getElementById("small-bar").innerText = `${smallConfidence}%`;
+          document.getElementById("live-result").innerText = "✅ NEW PREDICTION UPDATED ‼️";
+        } else {
+          document.getElementById("live-result").innerText = "⚠️ ERROR!";
+        }
+      })
+      .catch(error => {
+        document.getElementById("live-result").innerText = "⚠️ ERROR!";
+        console.error("API Fetch Error:", error);
+      });
+    }
+
+    function copyPrediction() {
+      const issue = document.querySelector("#result .period-box").innerText;
+      const signal = document.querySelector("#signal .box").innerText;
+      const numbers = document.querySelector("#prediction .number-box").innerText;
+      const textToCopy = `𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐂𝐋𝐔𝐁 🇧🇩\n\n‼️ LEVEL MAINTAIN 3 ‼️\n\nPERIOD: ${issue}\nSIGNAL: ${signal}\nNUMBERS: ${numbers}\n\nMOD OWNER: @rakibhossain_bd`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        document.getElementById("live-result").innerText = "📋 COPIED TO CLIPBOARD!";
+      }).catch(err => {
+        console.error('Copy failed', err);
+        document.getElementById("live-result").innerText = "❌ COPY FAILED!";
+      });
+    }
+  </script>
+</body>
+</html>
