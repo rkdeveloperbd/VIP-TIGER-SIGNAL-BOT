@@ -1,820 +1,216 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      min-height: 100vh;
-      background: radial-gradient(circle at center, #0a001a 0%, #05000d 100%);
+      height: 100vh;
+      background: radial-gradient(circle at center, #101010 0%, #000000 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Hind Siliguri', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       color: white;
       padding: 20px;
-      position: relative;
-      overflow-x: hidden;
     }
-    
-    /* Matrix Rain Effect */
-    .matrix-rain {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .container {
       width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-      pointer-events: none;
-    }
-    
-    /* Scanline Effect */
-    .scanline {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(to bottom, transparent, rgba(18, 251, 255, 0.2), transparent);
-      z-index: 9999;
-      pointer-events: none;
-      animation: scan 8s linear infinite;
-    }
-    
-    @keyframes scan {
-      from { top: -10px; }
-      to { top: 100%; }
-    }
-    
-    /* Login Container */
-    .login-container {
-      width: 100%;
-      max-width: 450px;
-      padding: 40px 30px;
-      background: rgba(10, 0, 25, 0.95);
+      max-width: 380px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 15px;
-      box-shadow: 0 0 40px rgba(255, 18, 26, 0.5);
-      text-align: center;
-      border: 1px solid rgba(255, 18, 26, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .login-container::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      z-index: -1;
-      background: linear-gradient(45deg, #FF121A, #21ff7e, #08b9ff);
-      background-size: 200% 200%;
-      animation: borderGlow 3s ease infinite;
-      border-radius: 17px;
-    }
-    
-    .login-title {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #FF121A;
-      text-shadow: 0 0 15px #FF121A;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 2px;
-    }
-    
-    .login-subtitle {
-      color: #000000;
-      margin-bottom: 30px;
-      font-size: 16px;
-      text-shadow: 0 0 8px #21ff7e;
-    }
-    
-    .user-stats {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 25px;
-      background: rgba(15, 0, 30, 0.7);
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-    }
-    
-    .stat-item {
+      box-shadow: 0 0 30px rgba(0,255,0,0.3);
       text-align: center;
     }
-    
-    .stat-value {
-      font-size: 24px;
-      font-weight: bold;
-      color: #08b9ff;
-      text-shadow: 0 0 10px #08b9ff;
-    }
-    
-    .stat-label {
-      font-size: 14px;
-      color: #21ff7e;
-      margin-top: 5px;
-    }
-    
-    .user-reviews {
-      background: rgba(15, 0, 30, 0.7);
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-      max-height: 150px;
-      overflow-y: auto;
-    }
-    
-    .review-item {
-      padding: 10px;
-      border-bottom: 1px solid rgba(255, 18, 26, 0.1);
-      text-align: left;
-    }
-    
-    .review-item:last-child {
-      border-bottom: none;
-    }
-    
-    .review-user {
-      color: #08b9ff;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    
-    .review-text {
-      color: #21ff7e;
-      font-size: 13px;
-      margin-top: 5px;
-    }
-    
-    .login-input {
-      width: 100%;
-      padding: 15px;
+    h1 {
+      font-size: 22px;
       margin-bottom: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
       border: none;
       border-radius: 8px;
-      background: rgba(15, 0, 30, 0.8);
-      color: #00ff41;
+      background: #111;
+      color: #0f0;
       font-size: 16px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(255, 18, 26, 0.3) inset;
-      font-family: 'Hind Siliguri', sans-serif;
-      outline: none;
-      transition: all 0.3s;
+      box-shadow: 0 0 10px #0f0 inset;
     }
-    
-    .login-input:focus {
-      box-shadow: 0 0 15px #FF121A;
-      border: 1px solid #21ff7e;
-    }
-    
-    .login-input::placeholder {
-      color: #7700aa;
-    }
-    
-    .login-button {
+    button {
       width: 100%;
-      padding: 15px;
-      background: rgba(15, 0, 30, 0.9);
+      padding: 12px;
+      background: #00ffcc;
       border: none;
       border-radius: 8px;
-      color: #FF121A;
-      font-size: 18px;
+      color: #000;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 18, 26, 0.5);
-      transition: all 0.3s;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 0 20px #00ffcc;
+      transition: 0.3s;
     }
-    
-    .login-button:hover {
-      background: rgba(20, 0, 40, 0.9);
-      box-shadow: 0 0 30px #FF121A;
-      color: #21ff7e;
+    button:hover {
+      background: #00cc99;
+      box-shadow: 0 0 30px #00ffcc;
     }
-    
-    .login-button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(18, 251, 255, 0.2), transparent);
-      transition: 0.5s;
-    }
-    
-    .login-button:hover::before {
-      left: 100%;
-    }
-    
-    .error-message {
-      color: #ff3333;
-      margin-top: 15px;
-      font-weight: bold;
-      text-shadow: 0 0 8px #ff3333;
+    .error {
+      color: #ff5555;
+      margin-top: 10px;
       display: none;
-    }
-    
-    .admin-contact {
-      margin-top: 20px;
       font-size: 14px;
-      color: #21ff7e;
     }
-    
-    .admin-contact a {
-      color: #08b9ff;
+    #prediction-page { display: none; }
+    .box {
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 6px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #00ffcc;
+      background: rgba(255, 255, 255, 0.05);
+      text-shadow: 0 0 5px #00ffcc;
+    }
+    .period-box { color: #ff99cc; }
+    .big { color: #00ff00; }
+    .small { color: #ff3300; }
+    .number-box { color: #ffff99; }
+    .predict-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      background: #111;
+      color: #00ffcc;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00ffcc;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .predict-btn:hover {
+      background: #222;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ffcc;
+    }
+    #live-result {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .telegram-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #0088cc;
+      color: white;
+      border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 0 15px #0088cc;
+      transition: background 0.3s ease;
     }
-    
-    .admin-contact a:hover {
-      text-shadow: 0 0 10px #08b9ff;
+    .telegram-button:hover {
+      background-color: #006699;
+      box-shadow: 0 0 25px #00aaff;
     }
-    
-    /* Prediction Page */
-    .prediction-container {
-      width: 100%;
-      max-width: 500px;
-      padding: 30px;
-      background: rgba(10, 0, 25, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      box-shadow: 0 0 40px rgba(255, 18, 26, 0.5);
-      text-align: center;
-      border: 1px solid rgba(255, 18, 26, 0.3);
-      position: relative;
-      display: none;
+    .telegram-button img {
+      width: 20px;
+      margin-right: 8px;
     }
-    
-    .prediction-container::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      z-index: -1;
-      background: linear-gradient(45deg, #FF121A, #21ff7e, #08b9ff);
-      background-size: 200% 200%;
-      animation: borderGlow 3s ease infinite;
-      border-radius: 17px;
+    #confidence-wrapper {
+      margin: 15px 0;
     }
-    
-    .prediction-title {
-      font-size: 26px;
-      margin-bottom: 25px;
-      color: #FF121A;
-      text-shadow: 0 0 15px #FF121A;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 2px;
-    }
-    
-    .prediction-box {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    
-    .prediction-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 15px;
-      background: rgba(15, 0, 30, 0.7);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-    }
-    
-    .prediction-label {
-      color: #08b9ff;
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .prediction-value {
-      font-size: 18px;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.3);
-    }
-    
-    .period-value {
-      color: #ff99cc;
-      text-shadow: 0 0 8px #ff99cc;
-    }
-    
-    .signal-value {
-      color: #00ff00;
-      text-shadow: 0 0 8px #00ff00;
-    }
-    
-    .number-value {
-      color: #ffff99;
-      text-shadow: 0 0 8px #ffff99;
-    }
-    
-    .confidence-wrapper {
-      margin: 20px 0;
-    }
-    
     .confidence-labels {
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
+      font-size: 12px;
       color: #ffffffaa;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
-    
     .confidence-bar {
       position: relative;
-      height: 20px;
-      background: rgba(15, 0, 30, 0.8);
-      border: 1px solid rgba(255, 18, 26, 0.3);
+      height: 16px;
+      background: #222;
+      border: 1px solid #00ffcc88;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 18, 26, 0.3) inset;
+      box-shadow: 0 0 10px #00ffcc55 inset;
     }
-    
     .confidence-fill {
       position: absolute;
       top: 0;
       height: 100%;
       display: flex;
       align-items: center;
-      padding: 0 10px;
+      padding: 0 6px;
       color: black;
       font-size: 12px;
       font-weight: bold;
       transition: width 0.5s ease;
     }
-    
-    .small-fill {
+    .left-fill {
       left: 0;
-      background: linear-gradient(to right, #21ff7e, #00cc66);
+      background: linear-gradient(to right, #00ffcc, #00cc66);
       border-radius: 20px 0 0 20px;
       justify-content: flex-start;
     }
-    
-    .big-fill {
+    .right-fill {
       right: 0;
-      background: linear-gradient(to left, #FF121A, #ff3300);
+      background: linear-gradient(to left, #ff6600, #ff3300);
       border-radius: 0 20px 20px 0;
       justify-content: flex-end;
-    }
-    
-    .action-buttons {
-      display: flex;
-      gap: 15px;
-      margin: 20px 0;
-    }
-    
-    .action-btn {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: rgba(15, 0, 30, 0.9);
-      color: #FF121A;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 18, 26, 0.4);
-      transition: all 0.3s;
-      font-family: 'Hind Siliguri', sans-serif;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .action-btn:hover {
-      background: rgba(20, 0, 40, 0.9);
-      box-shadow: 0 0 25px #FF121A;
-      color: #21ff7e;
-      transform: translateY(-2px);
-    }
-    
-    .live-result {
-      margin-top: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #000000;
-      text-shadow: 0 0 8px #21ff7e;
-      min-height: 24px;
-    }
-    
-    /* New Features Section */
-    .features-section {
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 18, 26, 0.2);
-    }
-    
-    .section-title {
-      color: #08b9ff;
-      margin-bottom: 15px;
-      font-size: 18px;
-      text-align: left;
-    }
-    
-    .signal-history {
-      background: rgba(15, 0, 30, 0.7);
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    
-    .history-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-    
-    .history-table th {
-      background: rgba(255, 18, 26, 0.2);
-      padding: 8px;
-      text-align: center;
-      color: #08b9ff;
-      border: 1px solid rgba(255, 18, 26, 0.3);
-    }
-    
-    .history-table td {
-      padding: 8px;
-      text-align: center;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-      color: #21ff7e;
-    }
-    
-    .win {
-      color: #00ff66;
-      font-weight: bold;
-    }
-    
-    .loss {
-      color: #ff3366;
-      font-weight: bold;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-    
-    .stat-card {
-      background: rgba(15, 0, 30, 0.7);
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-      text-align: center;
-    }
-    
-    .stat-card-title {
-      color: #08b9ff;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-    
-    .stat-card-value {
-      color: #21ff7e;
-      font-size: 20px;
-      font-weight: bold;
-      text-shadow: 0 0 8px #21ff7e;
-    }
-    
-    .community-links {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 15px;
-    }
-    
-    .community-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      background: rgba(15, 0, 30, 0.7);
-      border-radius: 8px;
-      text-decoration: none;
-      color: #08b9ff;
-      font-weight: bold;
-      border: 1px solid rgba(255, 18, 26, 0.2);
-      transition: all 0.3s;
-      font-size: 14px;
-    }
-    
-    .community-link:hover {
-      background: rgba(255, 18, 26, 0.2);
-      box-shadow: 0 0 15px rgba(255, 18, 26, 0.5);
-      color: #21ff7e;
-      transform: translateY(-2px);
-    }
-    
-    .telegram-section {
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 18, 26, 0.2);
-    }
-    
-    .telegram-title {
-      color: #08b9ff;
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
-    
-    .telegram-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .telegram-button {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      background: #0088cc;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
-      transition: all 0.3s;
-    }
-    
-    .telegram-button:hover {
-      background: #006699;
-      box-shadow: 0 0 25px #00aaff;
-      transform: translateY(-2px);
-    }
-    
-    .telegram-button img {
-      width: 20px;
-      margin-right: 8px;
-    }
-    
-    .developer-credit {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #777;
-    }
-    
-    .developer-credit a {
-      color: #08b9ff;
-      text-decoration: none;
-    }
-    
-    @keyframes borderGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    @media (max-width: 480px) {
-      .login-container, .prediction-container {
-        padding: 25px 20px;
-      }
-      
-      .login-title {
-        font-size: 24px;
-      }
-      
-      .prediction-title {
-        font-size: 22px;
-      }
-      
-      .action-buttons, .telegram-buttons {
-        flex-direction: column;
-      }
-      
-      .user-stats {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .community-links {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Rain Effect -->
-  <canvas id="matrix" class="matrix-rain"></canvas>
-  
-  <!-- Scanline Effect -->
-  <div class="scanline"></div>
 
-  <!-- LOGIN PAGE -->
-  <div id="login-page" class="login-container">
-    <h1 class="login-title">𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
-    <p class="login-subtitle">বাংলাদেশের সেরা সিগন্যাল প্রেডিকশন প্ল্যাটফর্ম</p>
-    
-    <div class="user-stats">
-      <div class="stat-item">
-        <div class="stat-value">১,২৫০+</div>
-        <div class="stat-label">সক্রিয় ব্যবহারকারী</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">৯৮%</div>
-        <div class="stat-label">সফলতার হার</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">২৪/৭</div>
-        <div class="stat-label">সাপোর্ট</div>
-      </div>
-    </div>
-    
-    <div class="user-reviews">
-      <div class="review-item">
-        <div class="review-user">MD Sourov Hossain</div>
-        <div class="review-text">সেরা সিগন্যাল, প্রতিদিন সঠিক সিগনালে প্রফিট করি ⭐</div>
-      </div>
-      <div class="review-item">
-        <div class="review-user">নাফিস আহমেদ</div>
-        <div class="review-text">বিশ্বাসযোগ্য বট, প্রফিট একদম পারফেক্ট 🚀</div>
-      </div>
-      <div class="review-item">
-        <div class="review-user">Delowar Hossain</div>
-        <div class="review-text">বাংলাদেশের সেরা সিগন্যাল বট। থ্যাঙ্কস টিম!</div>
-      </div>
-    </div>
-    
-    <input type="password" id="password" class="login-input" placeholder="এক্সেস কী লিখুন">
-    <button class="login-button" onclick="checkLogin()">লগইন করুন</button>
-    <p class="error-message" id="error-message">❌ ভুল কী! যোগাযোগ করুন: @rakibhossain_bd</p>
-    
-    <div class="admin-contact">
-      সমস্যা হলে যোগাযোগ করুন: <a href="https://t.me/rakibhossain_bd" target="_blank">@rakibhossain_bd</a>
-    </div>
+  <!-- LOGIN -->
+  <div id="login-box" class="container">
+    <h1>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
+    <input type="password" id="password" placeholder="Enter Access Key">
+    <button onclick="checkLogin()">Unlock</button>
+    <p class="error" id="error-message">❌ Invalid Key! DM :-@rakibhossain_bd</p>
   </div>
 
   <!-- PREDICTION PAGE -->
-  <div id="prediction-page" class="prediction-container">
-    <h1 class="prediction-title">𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
-    
-    <div class="prediction-box">
-      <div class="prediction-item">
-        <span class="prediction-label">Period:</span>
-        <span class="prediction-value period-value" id="period-value">--</span>
-      </div>
-      
-      <div class="prediction-item">
-        <span class="prediction-label">Signal:</span>
-        <span class="prediction-value signal-value" id="signal-value">--</span>
-      </div>
-      
-      <div class="prediction-item">
-        <span class="prediction-label">Numbers:</span>
-        <span class="prediction-value number-value" id="number-value">--/--</span>
-      </div>
-    </div>
-    
-    <div class="confidence-wrapper">
+  <div id="prediction-page" class="container">
+    <h1>𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐒𝐈𝐆𝐍𝐀𝐋 𝐁𝐎𝐓</h1>
+    <p id="result">PERIOD: <span class="box period-box">--</span></p>
+    <p id="signal">SIGNAL: <span class="box">--</span></p>
+    <div id="confidence-wrapper">
       <div class="confidence-labels">
-        <span>SMALL</span>
-        <span>BIG</span>
+        <span>SMALL</span><span>BIGG</span>
       </div>
       <div class="confidence-bar">
-        <div id="small-bar" class="confidence-fill small-fill">--%</div>
-        <div id="big-bar" class="confidence-fill big-fill">--%</div>
+        <div id="small-bar" class="confidence-fill left-fill">--%</div>
+        <div id="big-bar" class="confidence-fill right-fill">--%</div>
       </div>
     </div>
-    
-    <div class="action-buttons">
-      <button class="action-btn" onclick="fetchPrediction()">🔄 Refresh Signal</button>
-      <button class="action-btn" onclick="copyPrediction()">📋 Copy</button>
-    </div>
-    
-    <div class="live-result" id="live-result">Updating...</div>
-    
-    <!-- New Features Section -->
-    <div class="features-section">
-      <h3 class="section-title">Signal History</h3>
-      <div class="signal-history">
-        <table class="history-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Period</th>
-              <th>Signal</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody id="history-body">
-            <!-- History will be populated by JavaScript -->
-          </tbody>
-        </table>
-      </div>
-      
-      <h3 class="section-title">Trading Statistics</h3>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-card-title">Total Signals</div>
-          <div class="stat-card-value" id="total-signals">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card-title">Win Rate</div>
-          <div class="stat-card-value" id="win-rate">0%</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card-title">Today's Profit</div>
-          <div class="stat-card-value" id="today-profit">+0%</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card-title">Active Users</div>
-          <div class="stat-card-value" id="active-users">1,250+</div>
-        </div>
-      </div>
-      
-      <h3 class="section-title">Community Links</h3>
-      <div class="community-links">
-        <a href="https://t.me/dkwine_bangladesh" class="community-link" target="_blank">VIP Channel</a>
-        <a href="https://t.me/rakibhossain_bd" class="community-link" target="_blank">Admin Contact</a>
-        <a href="https://t.me/tiger_signal_group" class="community-link" target="_blank">Discussion Group</a>
-        <a href="https://t.me/tiger_signal_updates" class="community-link" target="_blank">Updates Channel</a>
-      </div>
-    </div>
-    
-    <div class="developer-credit">
-      Developer: <a href="https://t.me/RKDeveloperbd" target="_blank">RK_Developer/BD</a>
-    </div>
+    <p id="prediction">NUMBERS: <span class="box number-box">--/--</span></p>
+    <p id="live-result">Updating...</p>
+    <button class="predict-btn" onclick="fetchPrediction()">🔁 Refresh Prediction</button>
+    <button class="predict-btn" onclick="copyPrediction()">📋 Copy</button>
+    <a class="telegram-button" href="https://t.me/dkwine_bangladesh" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"> VIP HACK
+    </a>
   </div>
 
   <script>
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
-    
-    const alphabet = katakana + latin + nums + symbols;
-    
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    
-    const rainDrops = [];
-    
-    for (let x = 0; x < columns; x++) {
-      rainDrops[x] = 1;
-    }
-    
-    const draw = () => {
-      ctx.fillStyle = 'rgba(5, 0, 15, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.fillStyle = '#12fbff';
-      ctx.font = fontSize + 'px monospace';
-      
-      for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-        
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-        }
-        rainDrops[i]++;
-      }
-    };
-    
-    setInterval(draw, 30);
-    
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // VIP Tiger Signal Bot Logic
-    const VALID_KEY = "RAKIB@23";
+    const VALID_KEY = "RAKIB";
     const EXPIRY_HOURS = 24;
     const API_URL = 'https://api.bdg88zf.com/api/webapi/GetGameIssue';
     const REQUEST_DATA = {
@@ -826,9 +222,6 @@
     };
 
     let periodResults = {};
-    let signalHistory = [];
-    let totalSignals = 0;
-    let winCount = 0;
 
     function checkLogin() {
       const enteredKey = document.getElementById("password").value;
@@ -839,7 +232,7 @@
         localStorage.setItem("sdxx_key_time", now.toString());
         showPredictionPage();
       } else {
-        document.getElementById("error-message").innerText = "❌ ভুল কী! যোগাযোগ করুন: @rakibhossain_bd";
+        document.getElementById("error-message").innerText = "❌ Invalid Key! DM :- @rakibhossain_bd";
         document.getElementById("error-message").style.display = "block";
       }
     }
@@ -854,49 +247,10 @@
     }
 
     function showPredictionPage() {
-      document.getElementById("login-page").style.display = "none";
+      document.getElementById("login-box").style.display = "none";
       document.getElementById("prediction-page").style.display = "block";
       fetchPrediction();
       setInterval(fetchPrediction, 10000);
-      updateStats();
-    }
-
-    function updateStats() {
-      document.getElementById("total-signals").textContent = totalSignals;
-      const winRate = totalSignals > 0 ? Math.round((winCount / totalSignals) * 100) : 0;
-      document.getElementById("win-rate").textContent = winRate + "%";
-      document.getElementById("today-profit").textContent = "+" + (winRate - 50) + "%";
-    }
-
-    function updateHistory(period, signal, result) {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-      
-      signalHistory.unshift({
-        time: timeString,
-        period: period,
-        signal: signal,
-        result: result
-      });
-      
-      // Keep only last 10 records
-      if (signalHistory.length > 10) {
-        signalHistory.pop();
-      }
-      
-      const historyBody = document.getElementById("history-body");
-      historyBody.innerHTML = '';
-      
-      signalHistory.forEach(record => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${record.time}</td>
-          <td>${record.period}</td>
-          <td>${record.signal}</td>
-          <td class="${record.result === 'WIN' ? 'win' : 'loss'}">${record.result}</td>
-        `;
-        historyBody.appendChild(row);
-      });
     }
 
     window.onload = function () {
@@ -904,7 +258,7 @@
       if (storedKey === VALID_KEY && !isKeyExpired()) {
         showPredictionPage();
       } else if (storedKey && isKeyExpired()) {
-        document.getElementById("error-message").innerText = "⛔ আপনার কীটির মেয়াদ শেষ হয়েছে! যোগাযোগ করুন: @rakibhossain_bd";
+        document.getElementById("error-message").innerText = "⛔ Your Key Has Expired! DM :- @rakibhossain_bd";
         document.getElementById("error-message").style.display = "block";
         localStorage.removeItem("sdxx_key");
         localStorage.removeItem("sdxx_key_time");
@@ -925,36 +279,26 @@
             let num1 = Math.floor(Math.random() * 10);
             let num2 = (num1 + 3) % 10;
             let sumDigits = issueNumber.split('').reduce((acc, num) => acc + parseInt(num), 0);
-            let bigSmallPrediction = sumDigits % 2 === 0 ? "BIG" : "SMALL";
+            let bigSmallPrediction = sumDigits % 2 === 0 ? "Big" : "Small";
             let mainConfidence = Math.floor(Math.random() * 21) + 60;
             let altConfidence = 100 - mainConfidence;
-            let bigConfidence = bigSmallPrediction === "BIG" ? mainConfidence : altConfidence;
-            let smallConfidence = bigSmallPrediction === "SMALL" ? mainConfidence : altConfidence;
-            
-            // Simulate result (80% win rate)
-            const isWin = Math.random() < 0.8;
-            const result = isWin ? "WIN" : "LOSS";
-            
-            if (isWin) winCount++;
-            totalSignals++;
+            let bigConfidence = bigSmallPrediction === "Big" ? mainConfidence : altConfidence;
+            let smallConfidence = bigSmallPrediction === "Small" ? mainConfidence : altConfidence;
 
             periodResults[issueNumber] = {
               bigSmallPrediction,
               predictedNumbers: `${num1}/${num2}`,
               bigConfidence,
-              smallConfidence,
-              result: result
+              smallConfidence
             };
-            
-            // Update history
-            updateHistory(issueNumber, bigSmallPrediction, result);
-            updateStats();
           }
 
           let { bigSmallPrediction, predictedNumbers, bigConfidence, smallConfidence } = periodResults[issueNumber];
-          document.getElementById("period-value").innerText = issueNumber;
-          document.getElementById("signal-value").innerText = bigSmallPrediction;
-          document.getElementById("number-value").innerText = predictedNumbers;
+          document.querySelector("#result .period-box").innerText = issueNumber;
+          let signalBox = document.querySelector("#signal .box");
+          signalBox.innerText = bigSmallPrediction;
+          signalBox.className = `box ${bigSmallPrediction.toLowerCase()}`;
+          document.querySelector("#prediction .number-box").innerText = predictedNumbers;
           document.getElementById("big-bar").style.width = `${bigConfidence}%`;
           document.getElementById("big-bar").innerText = `${bigConfidence}%`;
           document.getElementById("small-bar").style.width = `${smallConfidence}%`;
@@ -971,9 +315,9 @@
     }
 
     function copyPrediction() {
-      const issue = document.getElementById("period-value").innerText;
-      const signal = document.getElementById("signal-value").innerText;
-      const numbers = document.getElementById("number-value").innerText;
+      const issue = document.querySelector("#result .period-box").innerText;
+      const signal = document.querySelector("#signal .box").innerText;
+      const numbers = document.querySelector("#prediction .number-box").innerText;
       const textToCopy = `𝐕𝐈𝐏 𝐓𝐈𝐆𝐄𝐑 𝐂𝐋𝐔𝐁 🇧🇩\n\n‼️ LEVEL MAINTAIN 3 ‼️\n\nPERIOD: ${issue}\nSIGNAL: ${signal}\nNUMBERS: ${numbers}\n\nMOD OWNER: @rakibhossain_bd`;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
